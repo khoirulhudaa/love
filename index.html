@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Untuk kamu</title>
+    <style>
+        button {
+            position: relative;
+            left: 5%;
+            border-radius: 100px;
+            font-weight: 500;
+            color: white;
+            background-color: rgb(255, 174, 0);
+            font-size: 18px;
+            border: none;
+            outline: none;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(255, 174, 0, 0.747);
+            transition: 0.1s;
+        }
+
+        button:active {
+            transform: translate(-50%, -50%) scale(0.9);
+            transition: 0.1s;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="">
+            <video autoplay="true" id="video-webcam">
+                Izinkan program webcam dengan javascript dan html ini untuk melihat demo!
+            </video>
+            <button onclick="takeSnapshot()">Ambil Gambar</button>
+        </div>
+        <script>
+
+            window.alert('I')
+            window.alert('LOVE')
+            window.alert('YOU')
+            window.alert(':)')
+
+            var video = document.querySelector("#video-webcam");
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+            if (navigator.getUserMedia) {
+                navigator.getUserMedia({ video: true }, handleVideo, videoError);
+            }
+            function handleVideo(stream) {
+                video.src = window.URL.createObjectURL(stream);
+                console.log(stream);
+            }
+            function videoError(e) {
+                // do something
+                alert("Izinkan program webcam dengan javascript dan html ini untuk melihat demo!")
+            }
+            function takeSnapshot() {
+                var img = document.createElement('img');
+                var context;
+                var width = video.offsetWidth
+                        , height = video.offsetHeight;
+                canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                context = canvas.getContext('2d');
+                context.drawImage(video, 0, 0, width, height);
+                img.src = canvas.toDataURL('image/png');
+                document.body.appendChild(img);
+            }
+        </script>
+    </body>
+</html>
